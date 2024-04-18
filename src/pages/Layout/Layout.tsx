@@ -1,17 +1,16 @@
-import { Outlet } from 'react-router-dom'
-
-import Box from '@mui/material/Box'
+import {Outlet} from 'react-router-dom'
+import {Container, Box} from '@mui/material'
 
 import Header from '../../components/Header/Header'
 import Footer from '../../components/Footer/Footer'
 
 export default function Layout() {
   return (
-    <Box>
+    <Box display='flex' flexDirection='column' minHeight='100vh'>
       <Header />
-      <main>
-        <Outlet></Outlet>
-      </main>
+      <Container maxWidth='lg' sx={{flex: '1 1 auto', display: 'flex', justifyContent: 'top', flexDirection: 'column'}}>
+        <Outlet />
+      </Container>
       <Footer />
     </Box>
   )

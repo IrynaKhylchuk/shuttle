@@ -10,16 +10,8 @@ import Container from '@mui/material/Container'
 import Button from '@mui/material/Button'
 import MenuItem from '@mui/material/MenuItem'
 import Link from '@mui/material/Link'
-import {ThemeProvider, createTheme} from '@mui/material/styles'
-import CssBaseline from '@mui/material/CssBaseline'
 
 import {routes, Route} from '../../routes'
-
-const darkTheme = createTheme({
-  palette: {
-    mode: 'dark',
-  },
-})
 
 export default function Header() {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null)
@@ -41,13 +33,12 @@ export default function Header() {
   }
 
   return (
-    <ThemeProvider theme={darkTheme}>
-      <CssBaseline />
       <AppBar
         position='static'
         sx={{
-          minWidth: '100vw',
+          minWidth: '100%',
           top: 0,
+          backgroundColor: '#444'
         }}
       >
         <Container maxWidth='lg'>
@@ -77,7 +68,7 @@ export default function Header() {
                   height: 35,
                   width: 35,
                 }}
-                alt='The house from the offer.'
+                alt='Logo'
                 src='../../../public/favicon.png'
               />
               SHUTTLE
@@ -85,41 +76,41 @@ export default function Header() {
 
             {/* responsive */}
             <Box sx={{flexGrow: 1, display: {xs: 'flex', md: 'none'}}}>
-                  <IconButton
-                     size='large'
-                     aria-label='account of current user'
-                     aria-controls='menu-appbar'
-                     aria-haspopup='true'
-                     onClick={handleOpenNavMenu}
-                     color='inherit'
-                  >
-                     <MenuIcon />
-                  </IconButton>
-                  <Menu
-                     id='menu-appbar'
-                     anchorEl={anchorElNav}
-                     anchorOrigin={{
-                        vertical: 'bottom',
-                        horizontal: 'left',
-                     }}
-                     keepMounted
-                     transformOrigin={{
-                        vertical: 'top',
-                        horizontal: 'left',
-                     }}
-                     open={Boolean(anchorElNav)}
-                     onClose={handleCloseNavMenu}
-                     sx={{
-                        display: {xs: 'block', md: 'none'},
-                     }}
-                  >
-                     {routes.map((item: Route) => (
-                        <MenuItem key={item.name} onClick={handleCloseNavMenu}>
-                           <Typography textAlign='center'>{item.name}</Typography>
-                        </MenuItem>
-                     ))}
-                  </Menu>
-               </Box>
+              <IconButton
+                size='large'
+                aria-label='account of current user'
+                aria-controls='menu-appbar'
+                aria-haspopup='true'
+                onClick={handleOpenNavMenu}
+                color='inherit'
+              >
+                <MenuIcon />
+              </IconButton>
+              <Menu
+                id='menu-appbar'
+                anchorEl={anchorElNav}
+                anchorOrigin={{
+                  vertical: 'bottom',
+                  horizontal: 'left',
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: 'top',
+                  horizontal: 'left',
+                }}
+                open={Boolean(anchorElNav)}
+                onClose={handleCloseNavMenu}
+                sx={{
+                  display: {xs: 'block', md: 'none'},
+                }}
+              >
+                {routes.map((item: Route) => (
+                  <MenuItem key={item.id} onClick={handleCloseNavMenu}>
+                    <Typography textAlign='center'>{item.name}</Typography>
+                  </MenuItem>
+                ))}
+              </Menu>
+            </Box>
 
             <Box
               mr='30px'
@@ -182,6 +173,5 @@ export default function Header() {
           </Toolbar>
         </Container>
       </AppBar>
-    </ThemeProvider>
   )
 }
