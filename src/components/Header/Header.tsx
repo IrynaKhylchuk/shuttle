@@ -13,14 +13,13 @@ import Link from '@mui/material/Link'
 import {ThemeProvider, createTheme} from '@mui/material/styles'
 import CssBaseline from '@mui/material/CssBaseline'
 
+import {routes, Route} from '../../routes'
+
 const darkTheme = createTheme({
   palette: {
     mode: 'dark',
   },
 })
-
-const pages = ['Plans', 'Features', 'Music']
-// const settings = ['Profile', 'Account', 'Dashboard', 'Logout']
 
 export default function Header() {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null)
@@ -57,7 +56,7 @@ export default function Header() {
               variant='h6'
               noWrap
               component='a'
-              href='#app-bar-with-responsive-menu'
+              href='/home'
               sx={{
                 mr: 2,
                 display: 'flex',
@@ -114,9 +113,9 @@ export default function Header() {
                         display: {xs: 'block', md: 'none'},
                      }}
                   >
-                     {pages.map((page) => (
-                        <MenuItem key={page} onClick={handleCloseNavMenu}>
-                           <Typography textAlign='center'>{page}</Typography>
+                     {routes.map((item: Route) => (
+                        <MenuItem key={item.name} onClick={handleCloseNavMenu}>
+                           <Typography textAlign='center'>{item.name}</Typography>
                         </MenuItem>
                      ))}
                   </Menu>
@@ -130,12 +129,12 @@ export default function Header() {
                 justifyContent: 'right',
               }}
             >
-              {pages.map((page) => (
+              {routes.map((item: Route) => (
                 <Link
                   variant='body2'
-                  key={page}
+                  key={item.name}
+                  href={item.layout + item.path}
                   underline='none'
-                  href='#'
                   onClick={handleCloseNavMenu}
                   fontFamily='Arial'
                   fontWeight='700'
@@ -154,7 +153,7 @@ export default function Header() {
                     },
                   }}
                 >
-                  {page}
+                  {item.name}
                 </Link>
               ))}
             </Box>
