@@ -10,6 +10,8 @@ import AppStoreImg from "../../assets/imgs/footer/app_store_download.png";
 import GooglePlayImg from "../../assets/imgs/footer/google_play_download.png";
 import FooterColumn from "./Columns/Columns";
 
+import Logo from "../Logo/Logo";
+
 export default function Footer() {
    return (
       <Paper
@@ -86,38 +88,7 @@ export default function Footer() {
                   </IconButton>
                </Box>
                <Box>
-                  <Link
-                     component={RouterLink}
-                     to="/home"
-                     variant="h1"
-                     underline="none"
-                     fontFamily="Arial"
-                     fontWeight="700"
-                     noWrap
-                     sx={{
-                        mr: 2,
-                        display: "flex",
-                        fontFamily: "Arial",
-                        fontWeight: 700,
-                        letterSpacing: ".3rem",
-                        color: "white",
-                        textDecoration: "none",
-                        alignItems: "center",
-                        fontSize: 20,
-                        lineHeight: "20px",
-                     }}
-                  >
-                     <img
-                        src="../../../public/favicon.png"
-                        alt="logo"
-                        style={{
-                           height: 35,
-                           width: 35,
-                           marginRight: "5px",
-                        }}
-                     />
-                     SHUTTLE
-                  </Link>
+                  <Logo />
                </Box>
                <Box>
                   <Typography component="span" variant="caption" color="white">

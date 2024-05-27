@@ -13,6 +13,7 @@ import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
 import Link from "@mui/material/Link";
 
+import Logo from "../Logo/Logo";
 import { headerRoutes, Route } from "../../routes";
 
 export default function Header() {
@@ -45,39 +46,7 @@ export default function Header() {
       >
          <Container maxWidth="lg">
             <Toolbar disableGutters>
-               <Link
-                  component={RouterLink}
-                  to="/home"
-                  variant="h1"
-                  underline="none"
-                  fontFamily="Arial"
-                  fontWeight="700"
-                  noWrap
-                  sx={{
-                     mr: 2,
-                     display: "flex",
-                     fontFamily: "Arial",
-                     fontWeight: 700,
-                     letterSpacing: ".3rem",
-                     color: "inherit",
-                     textDecoration: "none",
-                     alignItems: "center",
-                     fontSize: 20,
-                     lineHeight: "20px",
-                  }}
-               >
-                  <img
-                     src="../../../public/favicon.png"
-                     alt="logo"
-                     style={{
-                        height: 35,
-                        width: 35,
-                        marginRight: "5px",
-                     }}
-                  />
-                  SHUTTLE
-               </Link>
-
+               <Logo />
                {/* responsive */}
                <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
                   <IconButton
@@ -163,7 +132,7 @@ export default function Header() {
                >
                   <Button
                      component={RouterLink}
-                     to="/login"
+                     to="/"
                      variant="outlined"
                      style={{
                         color: "white",
