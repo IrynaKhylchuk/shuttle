@@ -17,8 +17,6 @@ import {
    footerRoutesColFive,
 } from "./routes";
 
-
-
 const theme = createTheme({
    palette: {
       primary: {
@@ -85,7 +83,7 @@ const generateRoutes = (routes, layout) =>
       .filter((route) => route.layout === layout)
       .map((route) => <Route key={route.id} path={route.layout + route.path} element={route.component} />);
 
-function App() {
+const App: React.FC = () => {
    return (
       <ThemeProvider theme={theme}>
          <Router>
