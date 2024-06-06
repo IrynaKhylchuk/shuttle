@@ -13,13 +13,12 @@ export default function FooterColumn({ routes }: FooterColumnProps) {
          {routes.map((item: Route) => (
             <Link
                key={item.id}
-               variant="body2"
+               variant="caption"
                underline="none"
                fontFamily="Arial"
                fontWeight="400"
                sx={{
-                  margin: 1,
-                  mb: 2,
+                  marginBottom: 1,
                   color: "white",
                   display: "block",
                   transition: "color 0.3s ease",

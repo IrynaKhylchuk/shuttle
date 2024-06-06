@@ -1,22 +1,28 @@
-import { Outlet } from "react-router-dom";
-import { Container, Box } from "@mui/material";
+import { useState, useEffect } from "react";
+import { Box } from "@mui/material";
 
-import Header from "../../components/Header/Header";
-import Footer from "../../components/Footer/Footer";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import MainContainer from "../../components/MainContainer/MainContainer";
+import Player from "../../components/MainContainer/Player";
+import { getTokenFromHash, getTokenFromStorage } from "../../utils/SpotifyAPI";
 
+export default function Layout() {
+   const [token, setToken] = useState<string | null>(null);
 
-export default function Layout({ children }: { children: React.ReactNode }) {
+   useEffect(() => {
+      const tokenFromHash = getTokenFromHash();
+      const tokenFromStorage = getTokenFromStorage();
+
+      setToken(tokenFromHash || tokenFromStorage);
+   }, []);
+
    return (
-      <Box height="100vh" display="flex" p={1}>
-         {/* <Header /> */}
-         <Sidebar>{children}</Sidebar>
-         <MainContainer />
-         {/* <Container maxWidth="lg" sx={{ flex: "1 1 auto", display: "flex", justifyContent: "top", flexDirection: "column" }}>
-            <Outlet />
-         </Container> */}
-         {/* <Footer /> */}
+      <Box display="flex" flexDirection="column">
+         <Box display="flex" minHeight="100vh" p={1} boxSizing="border-box">
+            <Sidebar />
+            <MainContainer />
+         </Box>
+         <Player accessToken={token}/>
       </Box>
    );
 }

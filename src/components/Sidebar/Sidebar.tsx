@@ -1,17 +1,12 @@
-import { useLocation } from "react-router-dom";
 import { useMemo } from "react";
+import { useLocation } from "react-router-dom";
 import HomeIcon from "@mui/icons-material/Home";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
-import CustomBox from "./CustomBox";
 import SidebarItem from "./SidebarItem";
 import Library from "./Library";
 import Box from "@mui/material/Box";
 
-interface SidebarProps {
-   children: React.ReactNode;
-}
-
-const Sidebar: React.FC<SidebarProps> = ({ children }) => {
+const Sidebar: React.FC = () => {
    const location = useLocation();
    const pathname = location.pathname;
 
@@ -21,7 +16,7 @@ const Sidebar: React.FC<SidebarProps> = ({ children }) => {
             icon: HomeIcon,
             label: "Home",
             active: pathname !== "/search",
-            href: "/",
+            href: "/home",
          },
          {
             icon: SearchOutlinedIcon,
@@ -34,18 +29,47 @@ const Sidebar: React.FC<SidebarProps> = ({ children }) => {
    );
 
    return (
-      <Box display="flex" height="100%">
-         <Box display={{ xs: "none", md: "flex" }} flexDirection="column" rowGap={1} bgcolor="black" height="100%" width="300px" pr={1}>
-            <CustomBox>
-               <Box display="flex" flexDirection="column" rowGap={2} sx={{ padding: "16px 20px" }}>
-                  {routes.map((item) => (
-                     <SidebarItem key={item.label} {...item} />
-                  ))}
-               </Box>
-            </CustomBox>
-            <CustomBox height="100%" sx={{ overflowY: "auto", height: "100%" }}>
+      <Box
+         display="flex"
+         flexDirection="column"
+         position="fixed"
+         left={8}
+         top={8}
+         height="calc(100% - 96px)"
+      >
+         <Box
+            display={{ xs: "none", md: "flex" }}
+            flexDirection="column"
+            rowGap={1}
+            bgcolor="black"
+            height="100%"
+            width="300px"
+            pr={1}
+         >
+            <Box
+               display="flex"
+               bgcolor="#222"
+               borderRadius={1}
+               flexDirection="column"
+               rowGap={2}
+               sx={{ padding: "16px 20px" }}
+            >
+               {routes.map((item) => (
+                  <SidebarItem key={item.label} {...item} />
+               ))}
+            </Box>
+            <Box
+               bgcolor="#222"
+               borderRadius={1}
+               sx={{
+                  flex: "1 1 auto",
+                  overflowY: "auto",
+                  display: "flex",
+                  flexDirection: "column",
+               }}
+            >
                <Library />
-            </CustomBox>
+            </Box>
          </Box>
       </Box>
    );

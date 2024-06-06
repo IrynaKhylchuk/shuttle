@@ -4,7 +4,6 @@ import XIcon from "@mui/icons-material/X";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import YouTubeIcon from "@mui/icons-material/YouTube";
 import { Link as RouterLink } from "react-router-dom";
-import Link from "@mui/material/Link";
 import { footerRoutesColFive, footerRoutesColFour, footerRoutesColOne, footerRoutesColThree, footerRoutesColTwo } from "../../routes";
 import AppStoreImg from "../../assets/imgs/footer/app_store_download.png";
 import GooglePlayImg from "../../assets/imgs/footer/google_play_download.png";
@@ -21,9 +20,9 @@ export default function Footer() {
             padding: "2.5rem 0",
             bottom: 0,
             left: 0,
-            backgroundColor: "#444",
+            backgroundColor: "#222",
             borderTop: 1,
-            borderColor: "#555",
+            borderColor: "#333",
          }}
          component="footer"
          square

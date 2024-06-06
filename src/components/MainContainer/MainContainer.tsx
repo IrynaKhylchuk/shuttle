@@ -1,33 +1,50 @@
-import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
-import Grid from "@mui/material/Grid";
+import { useEffect, useState } from "react";
+import { Outlet } from "react-router-dom";
+
+import { Box, Typography } from "@mui/material";
+
 import Header from "./Header";
-import ListItem from "./ListItem";
-import img from "../../../public/images/liked.png";
+import Footer from "../Footer/Footer";
+import { getTokenFromHash, getTokenFromStorage } from "../../utils/SpotifyAPI";
 
 export default function MainContainer() {
+   const [token, setToken] = useState<string | null>(null);
+
+   useEffect(() => {
+      const tokenFromHash = getTokenFromHash();
+      const tokenFromStorage = getTokenFromStorage();
+
+      setToken(tokenFromHash || tokenFromStorage);
+   }, []);
+
    return (
-      <Box bgcolor="#333" borderRadius={1} height="100%" width="100%" overflow="hidden" sx={{ overflowY: "auto" }}>
-         <Header>
-            <Box mb={1}>
-               <Typography component="h1" color="white" fontSize={30} fontWeight={600}>
-                  Welcome back
+      <Box
+         width="calc(100% - 320px)"
+         display="flex"
+         flexDirection="column"
+         position="fixed"
+         left={8}
+         top={8}
+         height="calc(100% - 96px)"
+         bgcolor="#222"
+         borderRadius={1}
+         overflow="hidden"
+         sx={{ overflowY: "auto" }}
+         ml="308px"
+      >
+         <Header />
+         {token ? (
+            <Box sx={{ padding: "8px 24px 28px" }} flex="1 1 auto">
+               <Outlet />
+            </Box>
+         ) : (
+            <Box sx={{ padding: "8px 24px 28px" }} flex="1 1 auto">
+               <Typography component="p" variant="body1">
+                  Please, Log in.
                </Typography>
-               <Grid container spacing={3} mt={4}>
-                  <Grid item xs={12} sm={6} lg={4} xl={3}>
-                     <ListItem path={img} name="Liked Songs" href="liked"/>
-                  </Grid>
-               </Grid>
             </Box>
-         </Header>
-         <Box sx={{padding: "8px 24px 28px"}}>
-            <Box display="flex" justifyContent="space-between" alignItems="center">
-               <Typography variant="h1" component="h2" color="white" fontSize={24} fontWeight={600}>Newest songs</Typography>
-            </Box>
-            <Box>
-               List of songs!
-            </Box>
-         </Box>
+         )}
+         <Footer />
       </Box>
    );
 }
